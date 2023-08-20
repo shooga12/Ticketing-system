@@ -5,7 +5,7 @@ const Op = db.Sequelize.Op;
 // Create and Save a new User
 exports.create = (request, response) => {
   // Validate request
-  if (!request.body.name) {
+  if (!request.body) {
     response.status(400).send({
       message: "Content cannot be empty!",
     });
@@ -36,7 +36,7 @@ exports.findAll = (request, response) => {
   const name = request.query.name;
   var condition = name ? { name: { [Op.like]: `%${name}%` } } : null;
 
-  User.findAll({ where: condition })
+  User.findAll({ where: condition, include: "tickets" })
     .then((data) => {
       response.send(data);
     })
@@ -51,7 +51,7 @@ exports.findAll = (request, response) => {
 exports.findOne = (request, response) => {
   const id = request.params.id;
 
-  User.findByPk(id)
+  User.findByPk(id, { include: ["tickets"] })
     .then((data) => {
       if (data) {
         response.send(data);

@@ -5,7 +5,7 @@ const Op = db.Sequelize.Op;
 //Create and save a new Ticket
 exports.create = (request, response) => {
   // Validate request
-  if (!request.body.title) {
+  if (!request.body) {
     response.status(400).send({
       message: "Content cannot be empty!",
     });
@@ -38,7 +38,7 @@ exports.findAll = (request, response) => {
   const title = request.query.title;
   var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
 
-  Ticket.findAll({ where: condition })
+  Ticket.findAll({ where: condition, include: "user" })
     .then((data) => {
       response.send(data);
     })
@@ -53,7 +53,7 @@ exports.findAll = (request, response) => {
 exports.findOne = (request, response) => {
   const id = request.params.id;
 
-  Ticket.findByPk(id)
+  Ticket.findByPk(id, { include: ["user"] })
     .then((data) => {
       if (data) {
         response.send(data);

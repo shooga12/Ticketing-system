@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 
@@ -36,7 +37,7 @@ app.get("/status", (request, response) => {
 require("./app/routes/user.routes")(app);
 require("./app/routes/ticket.routes")(app);
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.NODE_DOCKER_PORT || 8080;
 app.listen(PORT, () => {
   console.log("Server Listening on PORT:", PORT);
 });
