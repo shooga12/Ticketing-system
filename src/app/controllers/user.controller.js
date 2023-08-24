@@ -78,7 +78,7 @@ exports.update = (request, response) => {
     .then((num) => {
       if (num == 1) {
         response.send({
-          message: "User was updated successfully.",
+          message: "User updated successfully.",
         });
       } else {
         response.send({
@@ -103,7 +103,7 @@ exports.delete = (request, response) => {
     .then((num) => {
       if (num == 1) {
         response.send({
-          message: "User was deleted successfully!",
+          message: "User deleted successfully!",
         });
       } else {
         response.send({

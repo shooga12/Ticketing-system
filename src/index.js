@@ -41,3 +41,5 @@ const PORT = process.env.NODE_DOCKER_PORT || 8080;
 app.listen(PORT, () => {
   console.log("Server Listening on PORT:", PORT);
 });
+
+module.exports = app;

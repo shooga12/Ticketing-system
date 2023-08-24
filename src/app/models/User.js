@@ -23,7 +23,7 @@ module.exports = (sequelize, Sequelize) => {
       validate: {
         isEmail: {
           args: true,
-          msg: "Email must be in proper form, John@John.com",
+          msg: "Email must be in proper format, John@John.com",
         },
         //msg: "Email must be in proper form, John@John.com.",
       },

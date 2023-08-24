@@ -80,7 +80,7 @@ exports.update = (request, response) => {
     .then((num) => {
       if (num == 1) {
         response.send({
-          message: "Ticket was updated successfully.",
+          message: "Ticket updated successfully.",
         });
       } else {
         response.send({
@@ -105,7 +105,7 @@ exports.delete = (request, response) => {
     .then((num) => {
       if (num == 1) {
         response.send({
-          message: "Ticket was deleted successfully!",
+          message: "Ticket deleted successfully!",
         });
       } else {
         response.send({
