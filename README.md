@@ -1,27 +1,5 @@
 # Ticketing-system
 
-## Getting Started
-
-- Clone the repo<br />
-  `git clone `
-
-## Docker
-
-- docker build -t mowaamah-react-app .
-- docker run -p 3000:80 mowaamah-react-app
-
-## Docker Compose
-
-- docker-compose up --build -d
-- docker-compose up
-- docker-compose down
-
-### how to run using docker-compose?
-
-docker-compose down && docker-compose build --no-cache && docker-compose up -d && docker-compose logs -f
-
-# Ticketing-system
-
 This repository contains a simple Ticketing system Api implemented using Express.js, Sequelize as the ORM, MySQL as the database, and Docker for containerization. The Ticketing Api provides endpionts to preform CRUD (Create, Read, Update, Delete) operations For User and Ticket models.
 
 ## Table of Contents
@@ -31,10 +9,12 @@ This repository contains a simple Ticketing system Api implemented using Express
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-  - [Running with Docker](#running-with-docker)
+  - [Running app locally](#running-app-locally)
+  - [Running with Docker Compose](#running-with-docker-compose)
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
 - [Database](#database)
+- [How to Test](#how-to-test)
 
 ## Technologies Used
 
@@ -89,23 +69,31 @@ npm install
 
 Edit the ./config/db.config.js file to include your MySQL database credentials.
 
-### Running with Docker
-
-If you want to run the application using Docker:
-
-1. Build the Docker image:
+### Running app locally
 
 ```
-docker build -t ticketing-system .
+npm start
 ```
 
-2. Run the Docker container:
+The application should now be accessible at 'http://localhost:8080'.
+
+### Running with Docker Compose
+
+If you want to run the application using Docker Compose:
+
+- To build the Docker container:
 
 ```
-docker run -p 3000:3000 -d ticketing-system
+docker-compose up --build
 ```
 
-The application should now be accessible at 'http://localhost:3000'.
+- To remove the Docker container:
+
+```
+docker-compose down
+```
+
+The application should now be accessible at 'http://localhost:8080'.
 
 ## Usage
 
@@ -115,35 +103,43 @@ Once the application is up and running, you can use an API testing tool like Pos
 
 User endpoints:
 
-- `POST /users` Create a new user.
-- `GET /users` Get a list of all users.
-- `GET /users/:id` Get details of a specific user by id.
-- `PUT /users/:id` Update user details.
-- `DELETE /users/:id` Delete a user.
+- `POST api/users` Create a new user.
+- `GET api/users` Get a list of all users.
+- `GET api/users/:id` Get details of a specific user by id.
+- `PUT api/users/:id` Update user details.
+- `DELETE api/users/:id` Delete a user.
 
 Ticket endpoints:
 
-- `POST /tickets` Create a new ticket.
-- `GET /tickets` Get a list of all tickets.
-- `GET /tickets/:id` Get details of a specific ticket by id.
-- `PUT /tickets/:id` Update ticket details.
-- `DELETE /tickets/:id` Delete a ticket.
+- `POST api/tickets` Create a new ticket.
+- `GET api/tickets` Get a list of all tickets.
+- `GET api/tickets/:id` Get details of a specific ticket by id.
+- `PUT api/tickets/:id` Update ticket details.
+- `DELETE api/tickets/:id` Delete a ticket.
 
 ### Database
 
 The MySQL database schema for this project includes a **user** table to store user information and **ticket** table to store ticket information.
 
 **User Model attributes**
-| Parameter | Tags | Description |
-| --------- |:----------:| :---------------------------------------------------------------------------|
-| name | `Required` | The user's name. |
-| email | `Required` | The user's email. Email must be in proper format, Example: John@Company.com |
-| role | `Required` | The user's role in the ticketing system. |
+| Parameter | Value | Tags | Description |
+| --------- |:----------:|:----------:| :------------------------------------------------------------------|
+| name | String | `Required` | The user's name. |
+| email |String | `Required` | The user's email. Email must be in proper format, Example: John@Company.com |
+| role | String |`Required` | The user's role in the ticketing system. |
 
 **Ticket Model attributes**
-| Parameter | Tags | Description |
-| ----------- |:----------:| :--------------------------------------------------|
-| title | `Required` | The title of the ticket. |
-| description | `Required` | The description of the ticket. |
-| status | `Required` | The status of the ticket. |
-| assignedTo | `Required` | An ID of the user which the ticket is assigned to. |
+| Parameter |Value | Tags | Description |
+| ----------- |:----------:|:----------:| :--------------------------------------------------|
+| title | String | `Required` | The title of the ticket. |
+| description | String | `Required` | The description of the ticket. |
+| status | String | `Required` | The status of the ticket. |
+| assignedTo | Integer | `Required` | An ID of the user which the ticket is assigned to. |
+
+### How to Test
+
+You can test this Ticketing Api with already generated test cases. You can run the tests as follows:
+
+```
+npm test
+```

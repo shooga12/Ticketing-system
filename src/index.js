@@ -16,7 +16,7 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-const db = require("./app/models");
+const db = require("./models");
 db.sequelize
   .sync({ force: true })
   .then(() => {
@@ -34,8 +34,8 @@ app.get("/status", (request, response) => {
   response.send(status);
 });
 
-require("./app/routes/user.routes")(app);
-require("./app/routes/ticket.routes")(app);
+require("./routes/user.routes")(app);
+require("./routes/ticket.routes")(app);
 
 const PORT = process.env.NODE_DOCKER_PORT || 8080;
 app.listen(PORT, () => {

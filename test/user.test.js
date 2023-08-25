@@ -3,7 +3,7 @@ const chaiHttp = require("chai-http");
 const app = require("../src/index"); // Importing App instance
 const request = require("supertest")(app);
 const expect = chai.expect;
-const db = require("../src/app/models"); // Import your Sequelize instance
+const db = require("../src/models"); // Import your Sequelize instance
 
 chai.use(chaiHttp);
 
